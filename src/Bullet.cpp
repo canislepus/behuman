@@ -9,6 +9,8 @@ Bullet::Bullet(GameState* parent, float x, float y) : Entity(parent, x, y)
     texture = parent->getTexture(4);
     setDimensions(10, 10);
     setAngle(0);
+
+    life = INFINITY;
 }
 
 void Bullet::update(double delta){
@@ -18,8 +20,9 @@ void Bullet::update(double delta){
 
 
 void Bullet::onCollision(Entity e, double delta){
-    if(e == parent)
+    if(e.team == team)
         return;
 
-
+    e.health -= damage;
+    e.status_effects |= status_damage;
 }

@@ -45,6 +45,14 @@ class Entity
 
         float centerX, centerY;
 
+        //The team an entity belongs to. Entities will not attack teammates and projectiles do not collide with them.
+        int team;
+
+        //You guess it
+        float health;
+        //status effects affecting the entity itself
+        long long status_effects;
+
     protected:
 
         //Velocity.

@@ -8,6 +8,7 @@ Player::Player(GameState* parent, float x, float y) : Entity(parent, x, y)
 {
     this->texture = parent->getTexture(3);
     setDimensions(20, 20);
+    team = 1;
 }
 
 Player::~Player()

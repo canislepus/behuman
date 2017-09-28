@@ -10,6 +10,11 @@ class Bullet : public Entity
         Bullet(GameState* parent, float x, float y);
         void update(double delta);
         void onCollision(Entity e, double delta);
+
+        //Damage inflicted on collision
+        float damage;
+        //Status effects inflicted on collision
+        long long status_damage;
     protected:
     private:
 };
