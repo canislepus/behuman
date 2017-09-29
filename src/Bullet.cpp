@@ -4,13 +4,15 @@
 
 using namespace std;
 
-Bullet::Bullet(GameState* parent, float x, float y) : Entity(parent, x, y)
+Bullet::Bullet(GameState* parent, float x, float y, unsigned int team) : Entity(parent, x, y)
 {
     texture = parent->getTexture(4);
     setDimensions(10, 10);
     setAngle(0);
 
-    life = INFINITY;
+    this->team = team;
+
+    health = INFINITY;
 }
 
 void Bullet::update(double delta){
@@ -25,4 +27,5 @@ void Bullet::onCollision(Entity e, double delta){
 
     e.health -= damage;
     e.status_effects |= status_damage;
+    health = 0;
 }

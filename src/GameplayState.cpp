@@ -12,7 +12,7 @@ GameplayState::GameplayState(Game* parent) : GameState(parent)
 {
     player = new Player(this, 320, 240);
     this->addEntity(player);
-    this->addEntity(new Bullet(this, 200, 300));
+    //this->addEntity(new Bullet(this, 200, 300, TEAM_NEUTRAL));
 
     k_up = false;
     k_down = false;

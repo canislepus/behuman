@@ -9,6 +9,7 @@ using namespace std;
 GameState::GameState(Game* parent)
 {
     this->parent = parent;
+    firstFreeEnt = 0;
 }
 
 
@@ -34,10 +35,12 @@ void GameState::render(SDL_Renderer* ren, double delta)
         entrect.y = 0;
 
     for(Entity* ent : entities){
-        //cout << "doAnimation" << endl;
+        cout << "doAnimation of " << ent << endl;
+        if(ent == nullptr)
+            continue;
 
         ent->doAnimation(delta);
-        //cout << "doAnimation finished" << endl;
+        cout << "doAnimation finished" << endl;
         entrect.x = -ent->w / 2;
         entrect.y = -ent->h / 2;
         entrect.w = ent->w;
@@ -78,7 +81,7 @@ void GameState::checkForCollisions(double delta)
 {
 
     for(unsigned int i = 0; i < entities.size() - 1; i++){
-        if(!entities.at(i)->collidable)
+        if(entities.at(i) == nullptr || !entities.at(i)->collidable)
             continue;
         Entity* a = entities.at(i);
         for(unsigned int n = i + 1; n < entities.size(); n++){           //Nested loop so that every sprite is only checked with the sprites after it and not just every sprite.
@@ -110,7 +113,33 @@ void GameState::keyUp(SDL_Event event)
 
 void GameState::addEntity(Entity* ent)
 {
+    /*
+    cout << "before adding; size: " << entities.size() << endl;
+    if(firstFreeEnt >= entities.size()){
+        cout << "taking path 1" << endl;
+        entities.push_back(ent);
+        ent->entity_vector_index = entities.size() - 1;
+        firstFreeEnt = entities.size();
+        cout << "after adding; path 1" << endl;
+        return;
+    }
+    cout << "taking path 2" << endl;
+    entities[firstFreeEnt] = ent;
+    ent->entity_vector_index = firstFreeEnt;
+    int i;
+    for(i = firstFreeEnt; i < entities.size() && entities[i] != nullptr; i++){}  //This is just a counting loop for finding the first free entity.
+    firstFreeEnt = i;
+    cout << "after adding; path 2" << endl;
+    /**/
     entities.push_back(ent);
+}
+
+
+void GameState::removeEntity(Entity* ent){
+    cout << "This is remove." << endl;
+    firstFreeEnt = (ent->entity_vector_index < firstFreeEnt) ? ent->entity_vector_index : firstFreeEnt;
+    entities[ent->entity_vector_index] = nullptr;
+    delete(ent);
 }
 
 

@@ -7,7 +7,7 @@
 class Bullet : public Entity
 {
     public:
-        Bullet(GameState* parent, float x, float y);
+        Bullet(GameState* parent, float x, float y, unsigned int team);
         void update(double delta);
         void onCollision(Entity e, double delta);
 

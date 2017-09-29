@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include "Collider.h"
+#include "teams.h"
 
 class GameState;
 
@@ -17,6 +18,7 @@ class Entity
         void applyTransformations();
 
         virtual void onCollision(Entity e, double delta){}
+        virtual void onDeath(double delta){}
 
         float getSpeed();
         void setSpeed(float speed);
@@ -26,6 +28,9 @@ class Entity
         void setDimensions(float w, float h);
 
         GameState* parent;
+        //The index of the entity in the game state's entity vector.
+        //Automatically set by the state. DON'T CHANGE!!!
+        size_t entity_vector_index;
 
         //Position
         float x, y;
@@ -46,7 +51,7 @@ class Entity
         float centerX, centerY;
 
         //The team an entity belongs to. Entities will not attack teammates and projectiles do not collide with them.
-        int team;
+        unsigned int team;
 
         //You guess it
         float health;

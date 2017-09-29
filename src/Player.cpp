@@ -8,7 +8,8 @@ Player::Player(GameState* parent, float x, float y) : Entity(parent, x, y)
 {
     this->texture = parent->getTexture(3);
     setDimensions(20, 20);
-    team = 1;
+    team = TEAM_PLAYER1;
+    health = 100;
 }
 
 Player::~Player()

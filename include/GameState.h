@@ -25,6 +25,8 @@ class GameState
         virtual void keyUp(SDL_Event event);
 
         void addEntity(Entity* ent);
+        void removeEntity(Entity* ent);
+
         SDL_Texture* getTexture(unsigned int key);
 
         vector<Entity*> entities;
@@ -33,6 +35,8 @@ class GameState
 
     protected:
         Game* parent;
+
+        int firstFreeEnt;
 
     private:
 };

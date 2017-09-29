@@ -54,6 +54,10 @@ void Entity::update(double delta)
     angle += va * delta;
 
     collider->translate(vx * delta, vy * delta);
+    if(health <= 0){
+        this->onDeath(delta);
+        parent->removeEntity(this);
+    }
   //  collider->rotate(va * delta);
 }
 
