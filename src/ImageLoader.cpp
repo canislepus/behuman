@@ -51,6 +51,7 @@ vector<SDL_Texture*> loadImages(SDL_Renderer* renderer){
         SDL_FreeSurface(img);
         //Add it to the texture vector
         textures.push_back(tex);
+        cout << "Loaded texture " << imgpath << endl;
     }
     return textures;
 }

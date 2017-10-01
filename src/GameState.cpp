@@ -35,24 +35,26 @@ void GameState::render(SDL_Renderer* ren, double delta)
         entrect.y = 0;
 
     for(Entity* ent : entities){
-        cout << "doAnimation of " << ent << endl;
+        //cout << "doAnimation of " << ent << endl;
         if(ent == nullptr)
             continue;
 
         ent->doAnimation(delta);
-        cout << "doAnimation finished" << endl;
+        //cout << "doAnimation finished" << endl;
         entrect.x = -ent->w / 2;
         entrect.y = -ent->h / 2;
         entrect.w = ent->w;
         entrect.h = ent->h;
         //cout << ent->animRect.x << " " << ent->animRect.y << " " << ent->animRect.w << " " << ent->animRect.h << " " << endl;
+        //cout << entrect.x << " " << entrect.y << " " << entrect.w << " " << entrect.h << " " << endl;
+        //cout << ent->centerX << " " << ent->centerY << endl;
         glTranslatef(ent->centerX, ent->centerY, 0);
         glRotatef(ent->getAngle(), 0, 0, 1);
         SDL_RenderCopy(ren, ent->texture, &(ent->animRect), &entrect);
         glRotatef(-ent->getAngle(), 0, 0, 1);
         glTranslatef(-ent->centerX, -ent->centerY, 0);
 
-        //*
+        /*
         //Render collision boxes for debugging
         if(ent->collider->type == RECTANGLE){
             BoundingRect* br = (BoundingRect*) ent->collider;

@@ -10,6 +10,8 @@ Entity::Entity(GameState* parent, float x, float y)
     this->parent = parent;
     this->x = x;
     this->y = y;
+    this->vx = 0;
+    this->vy = 0;
 
     //default dimensions
     this->w = 20;
@@ -58,6 +60,7 @@ void Entity::update(double delta)
         this->onDeath(delta);
         parent->removeEntity(this);
     }
+
   //  collider->rotate(va * delta);
 }
 

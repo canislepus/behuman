@@ -36,7 +36,7 @@ class GameState
     protected:
         Game* parent;
 
-        int firstFreeEnt;
+        unsigned int firstFreeEnt;
 
     private:
 };
